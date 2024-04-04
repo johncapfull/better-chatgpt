@@ -61,7 +61,6 @@ const ChatContent = () => {
             className='flex flex-col items-center text-sm dark:bg-gray-800 w-full'
             ref={saveRef}
           >
-            {advancedMode && <ChatTitle />}
             {!generating && advancedMode && messages?.length === 0 && (
               <NewMessageButton messageIndex={-1} />
             )}
@@ -78,6 +77,7 @@ const ChatContent = () => {
                 </React.Fragment>
               )
             ))}
+            {advancedMode && <ChatTitle />}
           </div>
 
           <Message
