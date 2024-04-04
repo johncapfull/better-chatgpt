@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import useStore from '@store/store';
 
 import DownChevronArrow from '@icon/DownChevronArrow';
-import { ChatInterface, Role, roles } from '@type/chat';
+import { ChatInterface, ModelOptions, Role, roles } from '@type/chat';
 
 import useHideOnOutsideClick from '@hooks/useHideOnOutsideClick';
 
@@ -11,10 +11,12 @@ const RoleSelector = React.memo(
   ({
     role,
     messageIndex,
+    model,
     sticky,
   }: {
     role: Role;
     messageIndex: number;
+    model?: ModelOptions;
     sticky?: boolean;
   }) => {
     const { t } = useTranslation();
@@ -25,7 +27,8 @@ const RoleSelector = React.memo(
     const [dropDown, setDropDown, dropDownRef] = useHideOnOutsideClick();
 
     return (
-      <div className='prose dark:prose-invert relative'>
+
+      <div className='lg:w-[calc(100%-115px)] flex gap-2 grow w-full'>
         <button
           className='btn btn-neutral btn-small flex gap-1'
           aria-label={t(role) as string}
@@ -68,6 +71,9 @@ const RoleSelector = React.memo(
               </li>
             ))}
           </ul>
+        </div>
+        <div className='font-mono text-xs p-1 flex items-center justify-end grow'>
+          {model}
         </div>
       </div>
     );

@@ -12,6 +12,8 @@ import useSubmit from '@hooks/useSubmit';
 import DownloadChat from './DownloadChat';
 import CloneChat from './CloneChat';
 import ShareGPT from '@components/ShareGPT';
+import DeleteChat from './DeleteChat';
+import CreateChat from './CreateChat';
 
 const ChatContent = () => {
   const inputRole = useStore((state) => state.inputRole);
@@ -69,6 +71,7 @@ const ChatContent = () => {
                   <Message
                     role={message.role}
                     content={message.content}
+                    model={message.model}
                     messageIndex={index}
                   />
                   {!generating && advancedMode && <NewMessageButton messageIndex={index} />}
@@ -110,6 +113,8 @@ const ChatContent = () => {
                 <DownloadChat saveRef={saveRef} />
                 <ShareGPT />
                 <CloneChat />
+                <DeleteChat />
+                <CreateChat />
               </div>
             )}
           </div>

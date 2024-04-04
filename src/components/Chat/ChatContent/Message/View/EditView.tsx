@@ -70,7 +70,7 @@ const EditView = ({
     );
     const updatedMessages = updatedChats[currentChatIndex].messages;
     if (sticky) {
-      updatedMessages.push({ role: inputRole, content: _content });
+      updatedMessages.push({ role: inputRole, content: _content, model: undefined });
       _setContent('');
       resetTextAreaHeight();
     } else {

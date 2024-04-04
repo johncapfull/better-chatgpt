@@ -4,8 +4,10 @@ import useStore from '@store/store';
 import Avatar from './Avatar';
 import MessageContent from './MessageContent';
 
+import { ModelOptions } from '@type/chat';
 import { Role } from '@type/chat';
 import RoleSelector from './RoleSelector';
+
 
 // const backgroundStyle: { [role in Role]: string } = {
 //   user: 'dark:bg-gray-800',
@@ -19,11 +21,13 @@ const Message = React.memo(
     role,
     content,
     messageIndex,
+    model,
     sticky = false,
   }: {
     role: Role;
     content: string;
     messageIndex: number;
+    model?: ModelOptions;
     sticky?: boolean;
   }) => {
     const hideSideMenu = useStore((state) => state.hideSideMenu);
@@ -43,11 +47,12 @@ const Message = React.memo(
           }`}
         >
           <Avatar role={role} />
-          <div className='w-[calc(100%-50px)] '>
+          <div className='w-[calc(100%-50px)] flex flex-col'>
             {advancedMode &&
               <RoleSelector
                 role={role}
                 messageIndex={messageIndex}
+                model={model}
                 sticky={sticky}
               />}
             <MessageContent

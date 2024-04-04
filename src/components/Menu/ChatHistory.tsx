@@ -133,17 +133,17 @@ const ChatHistory = React.memo(
               <>
                 <button
                   className='p-1 hover:text-white'
-                  onClick={handleTick}
-                  aria-label='confirm'
-                >
-                  <TickIcon />
-                </button>
-                <button
-                  className='p-1 hover:text-white'
                   onClick={handleCross}
                   aria-label='cancel'
                 >
                   <CrossIcon />
+                </button>
+                <button
+                  className='p-1 hover:text-white'
+                  onClick={handleTick}
+                  aria-label='confirm'
+                >
+                  <DeleteIcon />
                 </button>
               </>
             ) : (

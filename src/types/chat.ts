@@ -6,6 +6,7 @@ export const roles: Role[] = ['user', 'assistant', 'system'];
 
 export interface MessageInterface {
   role: Role;
+  model?: ModelOptions;
   content: string;
 }
 

@@ -1,3 +1,5 @@
+import { Role } from "./chat";
+
 export interface EventSourceDataInterface {
   choices: EventSourceDataChoices[];
   created: number;
@@ -23,4 +25,9 @@ export interface ShareGPTSubmitBodyInterface {
     from: 'gpt' | 'human';
     value: string;
   }[];
+}
+
+export interface ApiMessageInterface {
+  role: Role;
+  content: string;
 }

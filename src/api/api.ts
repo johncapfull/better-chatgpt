@@ -1,10 +1,10 @@
-import { ShareGPTSubmitBodyInterface } from '@type/api';
+import { ApiMessageInterface, ShareGPTSubmitBodyInterface } from '@type/api';
 import { ConfigInterface, MessageInterface, ModelOptions } from '@type/chat';
 import { isAzureEndpoint } from '@utils/api';
 
 export const getChatCompletion = async (
   endpoint: string,
-  messages: MessageInterface[],
+  messages: ApiMessageInterface[],
   config: ConfigInterface,
   apiKey?: string,
   customHeaders?: Record<string, string>

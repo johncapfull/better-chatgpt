@@ -1,8 +1,10 @@
 import { MessageInterface, ModelOptions, TotalTokenUsed } from '@type/chat';
+import { ApiMessageInterface } from '@type/api'
 
 import useStore from '@store/store';
 
 import { Tiktoken } from '@dqbd/tiktoken/lite';
+import { forEach } from 'lodash';
 const cl100k_base = await import('@dqbd/tiktoken/encoders/cl100k_base.json');
 
 const encoder = new Tiktoken(
@@ -18,7 +20,7 @@ const encoder = new Tiktoken(
 
 // https://github.com/dqbd/tiktoken/issues/23#issuecomment-1483317174
 export const getChatGPTEncoding = (
-  messages: MessageInterface[],
+  messages: ApiMessageInterface[],
   model: ModelOptions
 ) => {
   const isGpt3 = model === 'gpt-3.5-turbo';
@@ -38,17 +40,17 @@ export const getChatGPTEncoding = (
   return encoder.encode(serialized, 'all');
 };
 
-const countTokens = (messages: MessageInterface[], model: ModelOptions) => {
+const countTokens = (messages: ApiMessageInterface[], model: ModelOptions) => {
   if (messages.length === 0) return 0;
   return getChatGPTEncoding(messages, model).length;
 };
 
 export const limitMessageTokens = (
-  messages: MessageInterface[],
+  messages: ApiMessageInterface[],
   limit: number = 4096,
   model: ModelOptions
-): MessageInterface[] => {
-  const limitedMessages: MessageInterface[] = [];
+): ApiMessageInterface[] => {
+  const limitedMessages: ApiMessageInterface[] = [];
   let tokenCount = 0;
 
   const isSystemFirstMessage = messages[0]?.role === 'system';
@@ -86,6 +88,19 @@ export const limitMessageTokens = (
 
   return limitedMessages;
 };
+
+export const 
+formatMessagesForApi = (messages: MessageInterface[]): ApiMessageInterface[] => {
+  const apiMessages: ApiMessageInterface[] = [];
+  messages.forEach((message) => {
+    apiMessages.push({
+      role: message.role, 
+      content: message.content
+    })
+  });
+  return apiMessages;
+};
+
 
 export const updateTotalTokenUsed = (
   model: ModelOptions,
