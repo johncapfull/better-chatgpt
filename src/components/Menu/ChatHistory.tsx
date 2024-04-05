@@ -5,6 +5,7 @@ import useInitialiseNewChat from '@hooks/useInitialiseNewChat';
 import ChatIcon from '@icon/ChatIcon';
 import CrossIcon from '@icon/CrossIcon';
 import DeleteIcon from '@icon/DeleteIcon';
+import DeleteIconRed from '@icon/DeleteIconRed';
 import EditIcon from '@icon/EditIcon';
 import TickIcon from '@icon/TickIcon';
 import useStore from '@store/store';
@@ -143,7 +144,7 @@ const ChatHistory = React.memo(
                   onClick={handleTick}
                   aria-label='confirm'
                 >
-                  <DeleteIcon />
+                  <DeleteIconRed />
                 </button>
               </>
             ) : (
